@@ -1,5 +1,7 @@
 <h1>Results</h1>
-<p>Original grid: <%= @grid.join %></p>
-<p>Attempt: <%= @word %></p>
-<p>Response = <%= @result %></p>
+<p>Original grid: <%= @grid.join(' ') %></p>
+<p>Your attempt: <%= @word.capitalize %></p>
 <p><%= @result_message %></p>
+<p>Time taken: <%= @time_taken %></p>
+<p>Score: <%= @score %></p>
+<%= link_to "Play Again", new_path(score: @score, high_score: params[:high_score]) %>
