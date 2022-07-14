@@ -1,16 +1,26 @@
-<h1>Create the longest possible word!</h1>
-<hr>
-<% @letters.each do |letter|%>
-  <%= letter.upcase %>
-<% end %>
-<hr>
-<h2>Current high score: <strong><%= @high_score.to_i %></strong></h2>
-<form action="score" method="post" data-turbo="false">
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-  <label for="word">Your word:</label>
-  <input type="text" id="word" name="word">
-  <%= hidden_field_tag :grid, @letters %>
-  <%= hidden_field_tag :start_time, @start_time %>
-  <%= hidden_field_tag :high_score, @high_score %>
-  <input type="submit" value="submit">
-</form>
+<div class="bg-light border-bottom border-2">
+  <div class="container p-3">
+    <h1>Create the longest possible word!</h1>
+  </div>
+  <div class="container d-flex justify-content-center">
+    <% @letters.each do |letter|%>
+      <div class="letters border border-primary m-2 bg-primary text-white"><%= letter.upcase %></div>
+    <% end %>
+  </div>
+</div>
+<div class="container d-flex flex-column p-3">
+  <h2 class="row mx-auto justify-content-center">Current high score: <strong><%= @high_score.to_i %></strong></h2>
+  <form action="score" method="post" data-turbo="false" class="row mx-auto">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="col-auto">
+      <label for="word">Your word:</label>
+    </div>
+    <div class="col-auto">
+      <input type="text" id="word" name="word">
+    </div>
+    <%= hidden_field_tag :grid, @letters %>
+    <%= hidden_field_tag :start_time, @start_time %>
+    <%= hidden_field_tag :high_score, @high_score %>
+    <input id="submit" type="submit" value="submit">
+  </form>
+</div>
