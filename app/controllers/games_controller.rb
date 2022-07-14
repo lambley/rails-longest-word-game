@@ -17,8 +17,9 @@ class GamesController < ApplicationController
   def score
     # submit time, rounded to 2dp => float
     @time_taken = (Time.now.to_f - params[:start_time].to_f).round(2)
-    # player's word attempt, downcased => string
-    @word = params[:word].downcase
+    # player's word attempt => string
+    @word = params[:word]
+    @word.downcase!
     # that round's letters => array
     @grid = params[:grid].split(' ')
     # check if word exist in dictionary and grid => bool
@@ -37,7 +38,7 @@ class GamesController < ApplicationController
   end
 
   def result_message(result, word)
-    result ? "Congrats! #{word.capitalize} is a valid word" : "Sorry, #{word} is not valid. Please try again"
+    result ? "Congrats! #{word.capitalize} is a valid word" : "Sorry, #{@word.empty? ? "________" : @word.capitalize } is not valid. Please try again"
   end
 
   def exists_in_dictionary?(word)

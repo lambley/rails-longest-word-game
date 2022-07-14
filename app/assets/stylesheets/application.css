@@ -15,3 +15,13 @@ h1, h2 {
 #submit {
   width: 100px;
 }
+
+.data-table {
+  width: 700px;
+  margin: 0 auto !important;
+}
+
+dt, dd {
+  flex-basis: fit-content !important;
+}
+

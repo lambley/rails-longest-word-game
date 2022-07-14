@@ -1,7 +1,26 @@
-<h1>Results</h1>
-<p>Original grid: <%= @grid.join(' ') %></p>
-<p>Your attempt: <%= @word.capitalize %></p>
-<p><%= @result_message %></p>
-<p>Time taken: <%= @time_taken %></p>
-<p>Score: <%= @score %></p>
-<%= link_to "Play Again", new_path(score: @score, high_score: params[:high_score]) %>
+<div class="bg-light border-bottom border-2">
+  <div class="container p-3">
+    <h1>Results</h1>
+  </div>
+  <div class="container d-flex justify-content-center">
+    <% @grid.each do |letter|%>
+      <div class="letters border border-primary m-2 bg-primary text-white"><%= letter.upcase %></div>
+    <% end %>
+  </div>
+</div>
+<div class="container">
+  <h2 class="mb-3"><%= @result_message %></h2>
+</div>
+<div class="container justify-content-center">
+  <dl class="data-table row justify-content-center">
+    <dt class="col-sm-3">Your attempt:</dt>
+    <dd class="col-sm-9"><%= @word.empty? ? "________" : @word.capitalize %></dd>
+
+    <dt class="col-sm-3">Time taken:</dt>
+    <dd class="col-sm-9"><%= @time_taken %></dd>
+
+    <dt class="col-sm-3">Score:</dt>
+    <dd class="col-sm-9"><%= @score %></dd>
+  </dl>
+  <%= link_to "Play Again", new_path(score: @score, high_score: params[:high_score]), :class => "btn btn-primary"%>
+</div>
