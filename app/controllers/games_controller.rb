@@ -15,7 +15,9 @@ class GamesController < ApplicationController
     # calculate score
     @word = params[:word]
     @grid = params[:grid].split(' ')
-    @res = dictionary_lookup(@word)
+    # return bool: does word exist or not
+    @result = dictionary_lookup(@word)
+    @result_message = result_message(@result, @word)
   end
 
   private
@@ -26,11 +28,11 @@ class GamesController < ApplicationController
   end
 
   def result_message(result, word)
-    result == 'true' ? "#{word} is valid" : "sorry, #{word} is not valid"
+    result ? "#{word} is valid" : "sorry, #{word} is not valid"
   end
 
   def dictionary_lookup(word)
-    @res = JSON.parse(URI.open("#{WAGON_URL}#{word}").read)
-    @res['found']
+    res = JSON.parse(URI.open("#{WAGON_URL}#{word}").read)
+    res['found']
   end
 end
